@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 
 const path = require('path');
+const { hostname } = require('os');
 
 module.exports = {
   entry: path.join(__dirname, 'src', 'index.js'),
@@ -78,10 +79,15 @@ module.exports = {
     ],
   },
   devServer: {
-    port: 8080,
+    port: process.env.PORT || 5500,
     watchFiles: path.join(__dirname, 'src'),
+    host: '0.0.0.0',
     historyApiFallback: true,
     open: true,
+  },
+  watchOptions: {
+    aggregateTimeout: 500,
+    poll: 1000
   },
   optimization: {
     minimizer: [
@@ -100,4 +106,10 @@ module.exports = {
       }),
     ],
   },
+
+  resolve: {
+    alias: {
+      env: path.resolve(__dirname, 'src/env/')
+    }
+  }
 };

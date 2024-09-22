@@ -24,38 +24,43 @@ const sequelize = new Sequelize({
 
 try {
   sequelize.authenticate();
-  console.log("Connection is completed");
+  console.log("Connection is completed" + ' on PORT ' + process.env.PORT);
 } catch (err) {
   console.log(`connection to database has error - ${err?.response}`);
 }
 
-class User extends Model {}
+// class User extends Model {}
 
-User.init(
-  {
-    id: {
-      type: DataTypes.BIGINT,
-      autoIncrement: true,
-      primaryKey: true,
-    },
-    firstName: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    lastName: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-  },
-  {
-    sequelize,
-    modelName: "User",
-    timestamps: true,
-    createdAt: true,
-    updatedAt: true,
-    tableName: "User",
-  }
-);
+// User.init(
+//   {
+//     id: {
+//       type: DataTypes.BIGINT,
+//       autoIncrement: true,
+//       primaryKey: true,
+//     },
+//     firstName: {
+//       type: DataTypes.STRING,
+//       allowNull: true,
+//     },
+//     lastName: {
+//       type: DataTypes.STRING,
+//       allowNull: true,
+//     },
+//     age: {
+//       type: DataTypes.INTEGER,
+//       allowNull: true
+//     }
+//   },
+//   {
+//     sequelize,
+//     modelName: "User",
+//     timestamps: true,
+//     createdAt: true,
+//     updatedAt: true,
+//   }
+// );
+
+
 
 // view engine setup
 

@@ -44,7 +44,7 @@ const Autorization = () => {
             <Flex flexDirection={'column'} gap={4}>
               <Center>
                 <Heading as={'h3'} size={'lg'}>
-                  Вход
+                  Войти
                 </Heading>
               </Center>
 
