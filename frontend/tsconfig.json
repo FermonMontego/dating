@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "esModuleInterop": true,
+        "moduleResolution": "Node16",
+        "module": "Node16",
+        "target": "ES6",
+        "allowSyntheticDefaultImports": true,
+        "baseUrl": "./",
+        "paths": {
+            "*": ["node_modules/*", "src/types/*"]
+        },
+        "strict": true,
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules"]
+}

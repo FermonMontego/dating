@@ -16,11 +16,16 @@ import { Field, Form, Formik } from 'formik';
 import React, { useCallback, useState } from 'react';
 
 import { Link as RouterLink } from 'react-router-dom';
+import {http} from '../../../http/http.ts'
 
 const Autorization = () => {
   const submitForm = useCallback((values, actions) => {
     console.log(values, 'values');
     console.log(actions, 'action');
+
+    http.get('/users').then(res => {
+      console.log(res, 'res')
+    })
 
     setTimeout(() => actions.setSubmitting(false), 3000);
   }, []);

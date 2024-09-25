@@ -49,6 +49,14 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
+        test: /\.(ts|tsx)$/,
+        use: ['ts-loader'],
+        resolve: {
+          extensions: ['.ts', '.tsx'],
+        },
+        exclude: /node_modules/,
+      },
+      {
         test: /\.pug$/,
         loader: 'pug-loader',
       },
@@ -109,7 +117,7 @@ module.exports = {
 
   resolve: {
     alias: {
-      env: path.resolve(__dirname, 'src/env/')
+      env: path.resolve(__dirname, 'src/env/'),
     }
   }
 };
