@@ -1,16 +1,25 @@
 {
-    "compilerOptions": {
-        "esModuleInterop": true,
-        "moduleResolution": "Node16",
-        "module": "Node16",
-        "target": "ES6",
-        "allowSyntheticDefaultImports": true,
-        "baseUrl": "./",
-        "paths": {
-            "*": ["node_modules/*", "src/types/*"]
-        },
-        "strict": true,
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "moduleResolution": "Node16",
+    "module": "Node16",
+    "target": "ES6",
+    "noImplicitAny": false,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "jsx": "react",
+    "paths": {
+      "*": [
+        "node_modules/*",
+        "src/types/*"
+      ]
     },
-    "include": ["src/**/*"],
-    "exclude": ["node_modules"]
+    "strict": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

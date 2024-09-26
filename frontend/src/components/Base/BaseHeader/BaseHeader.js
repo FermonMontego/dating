@@ -28,7 +28,7 @@ const headerConfig = {
   zIndex: 2,
 };
 
-const BaseHeader = (props) => {
+const BaseHeader = props => {
   return (
     <Box {...headerConfig}>
       <Container maxW={1440}>

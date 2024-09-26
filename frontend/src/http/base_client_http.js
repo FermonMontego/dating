@@ -1,5 +1,3 @@
-import { env } from "env/env.js";
+import { env } from 'env/env.js';
 
-export default class BaseClientHttp {
-
-}
+export default class BaseClientHttp {}

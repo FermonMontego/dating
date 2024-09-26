@@ -16,16 +16,11 @@ import { Field, Form, Formik } from 'formik';
 import React, { useCallback, useState } from 'react';
 
 import { Link as RouterLink } from 'react-router-dom';
-import {http} from '../../../http/http.ts'
+import { http } from '../../../http/http';
 
 const Autorization = () => {
   const submitForm = useCallback((values, actions) => {
-    console.log(values, 'values');
-    console.log(actions, 'action');
-
-    http.get('/users').then(res => {
-      console.log(res, 'res')
-    })
+    http.get('/auth');
 
     setTimeout(() => actions.setSubmitting(false), 3000);
   }, []);
@@ -44,7 +39,7 @@ const Autorization = () => {
       margin={'50px auto 0px'}
     >
       <Formik initialValues={{}} onSubmit={submitForm}>
-        {(propsFormik) => (
+        {propsFormik => (
           <Form>
             <Flex flexDirection={'column'} gap={4}>
               <Center>

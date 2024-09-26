@@ -26,7 +26,7 @@ const ForgotPassword = () => {
       margin={'50px auto 0px'}
     >
       <Formik initialValues={{}}>
-        {(propsFormik) => (
+        {propsFormik => (
           <Form>
             <Flex flexDirection={'column'} gap={4}>
               <Center>

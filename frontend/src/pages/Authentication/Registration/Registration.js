@@ -21,6 +21,8 @@ const Registration = () => {
     console.log(values, actions);
   }, []);
 
+  const subm = useCallback(value => value);
+
   return (
     <Box
       border={'1px solid var(--chakra-colors-chakra-border-color)'}
@@ -39,7 +41,7 @@ const Registration = () => {
         }}
         onSubmit={submitRegistration}
       >
-        {(propsFormik) => {
+        {propsFormik => {
           return (
             <Form>
               <Flex gap={8} flexDirection={'column'}>
@@ -105,7 +107,7 @@ const Registration = () => {
                         <RadioGroup
                           {...field}
                           colorScheme="teal"
-                          onChange={(_value) => {
+                          onChange={_value => {
                             form.setFieldValue('gender', _value);
                           }}
                         >

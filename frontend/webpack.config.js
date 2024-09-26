@@ -95,7 +95,7 @@ module.exports = {
   },
   watchOptions: {
     aggregateTimeout: 500,
-    poll: 1000
+    poll: 1000,
   },
   optimization: {
     minimizer: [
@@ -118,6 +118,6 @@ module.exports = {
   resolve: {
     alias: {
       env: path.resolve(__dirname, 'src/env/'),
-    }
-  }
+    },
+  },
 };
