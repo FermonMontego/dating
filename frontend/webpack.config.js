@@ -87,7 +87,7 @@ module.exports = {
     ],
   },
   devServer: {
-    port: process.env.PORT || 5500,
+    port: process.env.PORT || 5173,
     watchFiles: path.join(__dirname, 'src'),
     host: '0.0.0.0',
     historyApiFallback: true,

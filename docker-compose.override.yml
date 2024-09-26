@@ -1,9 +1,0 @@
-version: '1'
-
-services:
-  frontend:
-    ports:
-      - '5173:5173'
-  backend:
-    ports:
-      - "8081:8081"

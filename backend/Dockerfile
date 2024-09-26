@@ -6,11 +6,11 @@ WORKDIR /app
 
 ENV PORT=8081
 
-COPY package*.json ./
+COPY package*.json .
 
 RUN npm install
 
-COPY . .
+COPY . ./
 
 EXPOSE $PORT
 

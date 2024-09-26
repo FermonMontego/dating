@@ -12,16 +12,16 @@ ENV PATH="/root/.bun/bin:${PATH}"
 
 COPY package*.json bun.lockb ./
 
-RUN ["bun", "install"]
+RUN bun install
 
 COPY . .
 
-RUN ["npm", "run", "build"]
+RUN bun run build
 
 FROM nginx:stable-alpine
 
-COPY --from=build /dist /usr/share/nginx/html
-COPY --from=build /nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /app/dist /app/usr/share/nginx/html
+COPY --from=build /app/nginx.conf /app/etc/nginx/conf.d/default.conf
 
 EXPOSE $PORT
 
