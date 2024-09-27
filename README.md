@@ -22,6 +22,9 @@
 
 - Docker
 
+###### Server
+  Nginx
+
 ###### Backend
 
 - NodeJS (Nest)
