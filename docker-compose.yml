@@ -28,7 +28,7 @@ services:
       - dev
 
   ngnix:
-    image: nginx:mainline
+    image: nginx:stable-alpine
     ports:
       - 80:80
     volumes:

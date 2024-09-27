@@ -12,11 +12,13 @@ ENV PATH="/root/.bun/bin:${PATH}"
 
 COPY package*.json bun.lockb ./
 
-RUN bun install
+RUN rm -rf /app/node_modules/
+
+RUN ["bun", "install"]
 
 COPY . .
 
-RUN bun run build
+RUN ["bun", "run", "build"]
 
 FROM nginx:stable-alpine
 

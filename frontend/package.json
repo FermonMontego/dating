@@ -2,7 +2,7 @@
   "name": "training-project",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./src/index.js",
   "scripts": {
     "dev": "webpack --mode development",
     "serve": "webpack serve --open --mode development",
