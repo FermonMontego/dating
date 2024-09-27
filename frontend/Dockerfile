@@ -22,8 +22,8 @@ RUN ["bun", "run", "build"]
 
 FROM nginx:stable-alpine
 
-COPY --from=build /app/dist /app/usr/share/nginx/html
-COPY --from=build /app/nginx.conf /app/etc/nginx/conf.d/default.conf
+COPY --from=build /app/dist /usr/share/nginx/html
+COPY --from=build /app/nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE $PORT
 

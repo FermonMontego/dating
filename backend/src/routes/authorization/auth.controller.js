@@ -1,7 +1,7 @@
-import {Router} from 'express'
+import { Router } from 'express'
 
 const router = Router()
 
-export default router.post('/', function(req, res) {
-
+export default router.get('/', function (req, res) {
+    res.json({ message: "data auth" })
 })
