@@ -6,7 +6,7 @@ import authController from "./authorization/auth.controller.js";
 const entryRouter = Router();
 
 entryRouter.get("/", function (req, res) {
-  res.json({ message: "Test" });
+  res.json({ message: "Test xueta ebanaya" });
 });
 
 entryRouter.use("/users", userRouter);
