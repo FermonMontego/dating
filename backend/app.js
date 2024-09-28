@@ -19,7 +19,7 @@ const __dirname = dirname(__filename);
 
 const sequelize = new Sequelize({
   dialect: "sqlite",
-  storage: join(__dirname, "src", "db", "database", "data.sqlite"),
+  storage: join(__dirname, "db", "database", "data.sqlite"),
 });
 
 try {
@@ -29,45 +29,47 @@ try {
   console.log(`connection to database has error - ${err?.response}`);
 }
 
-// class User extends Model {}
+class User extends Model { }
 
-// User.init(
-//   {
-//     id: {
-//       type: DataTypes.BIGINT,
-//       autoIncrement: true,
-//       primaryKey: true,
-//     },
-//     firstName: {
-//       type: DataTypes.STRING,
-//       allowNull: true,
-//     },
-//     lastName: {
-//       type: DataTypes.STRING,
-//       allowNull: true,
-//     },
-//     age: {
-//       type: DataTypes.INTEGER,
-//       allowNull: true
-//     }
-//   },
-//   {
-//     sequelize,
-//     modelName: "User",
-//     timestamps: true,
-//     createdAt: true,
-//     updatedAt: true,
-//   }
-// );
+User.init(
+  {
+    id: {
+      type: DataTypes.BIGINT,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    firstName: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    lastName: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    age: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    }
+  },
+  {
+    sequelize,
+    modelName: "User",
+    timestamps: true,
+    createdAt: true,
+    updatedAt: true,
+  }
+);
 
+await User.sync()
 
+const user = await User.create({ firstName: "Dmitry", lastName: 'Dmitry', age: 30 });
 
-// view engine setup
+console.log(JSON.stringify(user, null, 2))
 
 app.set("views", join(__dirname, "src", "views"));
 app.set("view engine", "ejs");
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:5173");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();

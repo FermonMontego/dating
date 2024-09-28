@@ -38,3 +38,14 @@ services:
       - frontend
     networks:
       - dev
+  db_sqlite:
+    image: nouchka/sqlite3:latest
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./db/database/:/root/db/
+    networks:
+      - dev
+    depends_on:
+      - backend
+      - frontend
