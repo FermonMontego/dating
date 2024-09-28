@@ -19,8 +19,19 @@ import { Link as RouterLink } from 'react-router-dom';
 import { http } from '../../../http/http';
 
 const Autorization = () => {
-  const submitForm = useCallback((values, actions) => {
-    http.get('/auth');
+  const submitForm = useCallback(async (values, actions) => {
+    await http.post('/auth', {
+      name: 'Gosha',
+      surname: 'Rubchinsky',
+      age: 40,
+      city: 'st. Petersburg',
+      address: {
+        street: 'Улица солевая',
+        home: '99'
+      }
+    }).then(response => {
+      console.log(response, 'response');
+    })
 
     setTimeout(() => actions.setSubmitting(false), 3000);
   }, []);
@@ -44,7 +55,7 @@ const Autorization = () => {
             <Flex flexDirection={'column'} gap={4}>
               <Center>
                 <Heading as={'h3'} size={'lg'}>
-                  Войти
+                  Войти!!!
                 </Heading>
               </Center>
 

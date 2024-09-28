@@ -2,6 +2,6 @@ import { Router } from 'express'
 
 const router = Router()
 
-export default router.get('/', function (req, res) {
-    res.json({ message: "data auth" })
+export default router.post('/', function (req, res) {
+    return res.json(req.body);
 })
