@@ -43,7 +43,7 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      - ./db/database/:/root/db/
+      - ./backend/db/database/:/root/db/
     networks:
       - dev
     depends_on:

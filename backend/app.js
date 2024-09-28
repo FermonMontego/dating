@@ -60,12 +60,6 @@ User.init(
   }
 );
 
-await User.sync()
-
-const user = await User.create({ firstName: "Dmitry", lastName: 'Dmitry', age: 30 });
-
-console.log(JSON.stringify(user, null, 2))
-
 app.set("views", join(__dirname, "src", "views"));
 app.set("view engine", "ejs");
 
@@ -82,7 +76,12 @@ app.use(cookieParser());
 app.use(express.static(join(__dirname, "public")));
 app.use("/static", express.static(join(__dirname, "static")));
 
-app.use("/", entryRouter);
+app.use("/", async function (req, res, next) {
+  await User.sync()
+  const user = await User.create({ firstName: "Avraam", lastName: 'Lincoln', age: 30 });
+  console.log(JSON.stringify(user, null, 2))
+  next()
+}, entryRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
