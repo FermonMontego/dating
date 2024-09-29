@@ -38,7 +38,7 @@ const BaseHeader = props => {
             <Menu>
               <MenuButton as={Link}>
                 <Flex gap={2} alignItems="center">
-                  <Text>Прайс</Text>
+                  <Text>Наши предложения</Text>
                   <ChevronDownIcon />
                 </Flex>
               </MenuButton>
@@ -48,8 +48,9 @@ const BaseHeader = props => {
                 <MenuItem>PLATINUM подписка</MenuItem>
               </MenuList>
             </Menu>
+            <RouterLink to={'/advantages'}>Что умеет приложение?</RouterLink>
             <RouterLink to={'/rules'}>Правила</RouterLink>
-            <Link>Смотреть анкеты</Link>
+            <RouterLink to={'/ankets'}>Смотреть анкеты</RouterLink>
           </Stack>
           <Spacer></Spacer>
           <Stack direction="row" spacing={2}>

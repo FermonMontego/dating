@@ -20,6 +20,8 @@ COPY . .
 
 RUN ["bun", "run", "build"]
 
+CMD [ "bun", "run", "serve" ]
+
 FROM nginx:stable-alpine
 
 COPY --from=build /app/dist /usr/share/nginx/html
