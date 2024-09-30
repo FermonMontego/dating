@@ -15,6 +15,7 @@
 - Babel
 - TypeScript
 - Formik
+- React-Hook-Form
   ###### Testing
   - Jest
 
@@ -27,7 +28,7 @@
 
 ###### Backend
 
-- NodeJS (Nest)
+- NodeJS (Express)
 - TypeScript
 - Sequelize
   ###### Testing
