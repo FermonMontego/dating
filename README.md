@@ -28,7 +28,7 @@
 
 ###### Backend
 
-- NodeJS (Nest)
+- NodeJS (Express)
 - TypeScript
 - Sequelize
   ###### Testing
