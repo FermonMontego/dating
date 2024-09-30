@@ -8,6 +8,8 @@ import app from "../app.js";
 import debug from "debug";
 import http from "http";
 
+import sequelize from '../db/database.js'
+
 debug("backend-express:server");
 
 /**
@@ -28,6 +30,7 @@ var server = http.createServer(app);
  */
 
 server.listen(port);
+
 server.on("error", onError);
 server.on("listening", onListening);
 

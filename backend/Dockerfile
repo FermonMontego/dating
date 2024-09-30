@@ -1,18 +1,24 @@
 ARG NODE_VERSION=22.5.0
 
-FROM node:${NODE_VERSION}
+FROM node:${NODE_VERSION} as build
 
 WORKDIR /app
 
 ENV PORT=8081
 
-COPY package*.json .
+RUN curl -fsSL https://bun.sh/install | bash
 
-RUN npm install
+ENV PATH="/root/.bun/bin:${PATH}"
 
-COPY . ./
+COPY package*.json bun.lockb ./
+
+RUN rm -rf /app/node_modules/
+
+RUN ["bun", "install"]
+
+COPY . .
 
 EXPOSE $PORT
 
-CMD ["npm", "run", "start:demon"]
+CMD ["bun", "run", "start:demon"]
 

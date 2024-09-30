@@ -1,7 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
 import { dirname, join } from "path";
-import { Sequelize, DataTypes, Model } from "sequelize";
 
 import cookieParser from "cookie-parser";
 import createError from "http-errors";
@@ -10,6 +9,31 @@ import logger from "morgan";
 
 import entryRouter from "#src/routes/entryRouter.js";
 
+import db from "./db/database.js";
+import { Model, Sequelize } from "sequelize";
+
+class User extends Model {
+
+}
+
+const model = User.init({
+  id: {
+    type: Sequelize.INTEGER,
+    autoincrement: true,
+    allowNull: false,
+    primaryKey: true
+  },
+  firstName: {
+    type: Sequelize.STRING
+  }
+}, {
+  sequelize: db
+});
+
+await model.sync();
+
+await model.create({ id: 2, firstName: 'Tests' })
+
 dotenv.config();
 
 const app = express();
@@ -17,48 +41,7 @@ const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const sequelize = new Sequelize({
-  dialect: "sqlite",
-  storage: join(__dirname, "db", "database", "data.sqlite"),
-});
-
-try {
-  sequelize.authenticate();
-  console.log("Connection is completed" + ' on PORT ' + process.env.PORT);
-} catch (err) {
-  console.log(`connection to database has error - ${err?.response}`);
-}
-
-class User extends Model { }
-
-User.init(
-  {
-    id: {
-      type: DataTypes.BIGINT,
-      autoIncrement: true,
-      primaryKey: true,
-    },
-    firstName: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    lastName: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    age: {
-      type: DataTypes.INTEGER,
-      allowNull: true
-    }
-  },
-  {
-    sequelize,
-    modelName: "User",
-    timestamps: true,
-    createdAt: true,
-    updatedAt: true,
-  }
-);
+console.log(process.env.PG_HOST, process.env.PG_USER, process.env.PG_PASSWORD, process.env.PG_DB, 'SUKA')
 
 app.set("views", join(__dirname, "src", "views"));
 app.set("view engine", "ejs");
