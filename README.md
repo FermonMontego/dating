@@ -15,6 +15,7 @@
 - Babel
 - TypeScript
 - Formik
+- React-Hook-Form
   ###### Testing
   - Jest
 
