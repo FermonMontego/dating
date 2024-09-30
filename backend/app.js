@@ -76,12 +76,7 @@ app.use(cookieParser());
 app.use(express.static(join(__dirname, "public")));
 app.use("/static", express.static(join(__dirname, "static")));
 
-app.use("/", async function (req, res, next) {
-  await User.sync()
-  const user = await User.create({ firstName: "Avraam", lastName: 'Lincoln', age: 30 });
-  console.log(JSON.stringify(user, null, 2))
-  next()
-}, entryRouter);
+app.use("/api", entryRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

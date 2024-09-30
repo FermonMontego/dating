@@ -92,9 +92,9 @@ module.exports = {
     host: '0.0.0.0',
     historyApiFallback: true,
     open: true,
-    devMiddleware: {
-      writeToDisk: true,
-    },
+    // devMiddleware: {
+    //   writeToDisk: true,
+    // },
   },
   watchOptions: {
     aggregateTimeout: 500,

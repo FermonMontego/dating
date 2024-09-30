@@ -14,10 +14,15 @@ import {
 import { Field, Form, Formik } from 'formik';
 import React, { useCallback } from 'react';
 
+import { http } from '../../../http/http.ts'
+
 import { Link as RouterLink } from 'react-router-dom';
 
 const Registration = () => {
-  const submitRegistration = useCallback((values, actions) => {
+  const submitRegistration = useCallback(async (values, actions) => {
+    await http.post('/auth', {
+      ...values
+    })
     console.log(values, actions);
   }, []);
 
@@ -55,12 +60,12 @@ const Registration = () => {
                   {({ field, form }) => {
                     return (
                       <FormControl>
-                        <FormLabel>Придумайте логин</FormLabel>
+                        <FormLabel>Введите вашу почту</FormLabel>
                         <Input
                           {...field}
-                          type="text"
+                          type="email"
                           size={'lg'}
-                          placeholder="Придумайте логин"
+                          placeholder="Ваша почта example@example.com"
                         />
                       </FormControl>
                     );
@@ -71,12 +76,12 @@ const Registration = () => {
                   {({ field, form }) => {
                     return (
                       <FormControl>
-                        <FormLabel>Ваше имя</FormLabel>
+                        <FormLabel>Как вас зовут?</FormLabel>
                         <Input
                           {...field}
                           type="text"
                           size={'lg'}
-                          placeholder="Ваше имя"
+                          placeholder="Введите ваше имя"
                         />
                       </FormControl>
                     );
@@ -87,13 +92,24 @@ const Registration = () => {
                   {({ field, form }) => {
                     return (
                       <FormControl>
-                        <FormLabel>Фамилия</FormLabel>
+                        <FormLabel>Ваша фамилия</FormLabel>
                         <Input
                           {...field}
                           type="text"
                           size={'lg'}
-                          placeholder="Ваша фамилия"
+                          placeholder="Введите вашу фамилию"
                         />
+                      </FormControl>
+                    );
+                  }}
+                </Field>
+
+                <Field name="years_old">
+                  {({ field, form }) => {
+                    return (
+                      <FormControl>
+                        <FormLabel>Дата вашего рождения</FormLabel>
+                        <Input {...field} type="date" size={'lg'} />
                       </FormControl>
                     );
                   }}
@@ -120,20 +136,9 @@ const Registration = () => {
                     );
                   }}
                 </Field>
-
-                <Field name="years_old">
-                  {({ field, form }) => {
-                    return (
-                      <FormControl>
-                        <FormLabel>Дата вашего рождения</FormLabel>
-                        <Input {...field} type="date" size={'lg'} />
-                      </FormControl>
-                    );
-                  }}
-                </Field>
               </Flex>
 
-              <Flex gap={2} mt={8}>
+              <Flex gap={2} mt={8} justifyContent={"space-between"}>
                 <Button
                   colorScheme="teal"
                   variant={'outline'}
