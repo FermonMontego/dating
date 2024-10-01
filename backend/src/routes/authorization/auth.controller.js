@@ -1,13 +1,27 @@
-import { Router } from 'express'
+class AuthController {
+    async login(req, res) {
+        try {
+            res.json(req.body)
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
-const router = Router()
+    async getLoginPage(req, res) {
+        try {
+            res.json({ message: 'get login page' });
+        } catch {
+            console.log('Что-то пошло не так')
+        }
+    }
 
-router.post("/", function (req, res) {
-    res.json(req.body);
-})
+    async logout(req, res) {
+        try {
+            res.json(req.body)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+}
 
-router.get('/', function (req, res) {
-    res.json({ message: 'get запрос из auth' })
-})
-
-export default router;
+export default new AuthController();

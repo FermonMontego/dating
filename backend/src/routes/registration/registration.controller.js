@@ -1,13 +1,19 @@
-import express from 'express';
+class RegistrationController {
+    registration(req, res) {
+        try {
+            res.json({ message: 'response from registration route' })
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
-const router = express.Router();
+    getRegistrationPage(req, res) {
+        try {
+            res.json({ message: 'response from registration route methods getRegistrationPage' })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
 
-router.post('/', function (req, res) {
-    return res.json(req.body);
-})
-
-router.get('/', function (req, res) {
-    res.json({ message: 'get запрос из registration' })
-})
-
-export default router;
+export default new RegistrationController();
