@@ -1,2 +1,1 @@
-#!/bin/bash
-echo "pizda"
+docker compose up --build
