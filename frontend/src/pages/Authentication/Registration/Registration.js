@@ -20,7 +20,7 @@ import { Link as RouterLink } from 'react-router-dom';
 
 const Registration = () => {
   const submitRegistration = useCallback(async (values, actions) => {
-    await http.post('/auth', {
+    await http.post('/registration', {
       ...values
     })
     console.log(values, actions);

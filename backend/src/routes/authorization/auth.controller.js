@@ -2,12 +2,12 @@ import { Router } from 'express'
 
 const router = Router()
 
-router.route('/').post(function (req, res) {
+router.post("/", function (req, res) {
     res.json(req.body);
 })
 
-router.route('/').get(function (req, res) {
-    res.json({ message: 'Auth route get' });
+router.get('/', function (req, res) {
+    res.json({ message: 'get запрос из auth' })
 })
 
 export default router;

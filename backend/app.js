@@ -41,8 +41,9 @@ app.set("views", join(__dirname, "src", "views"));
 app.set("view engine", "ejs");
 
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", ["http://localhost:5173", "http://31.129.35.181/"]);
+  res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods", "DELETE, PUT, UPDATE, HEAD, OPTIONS, GET, POST");
   next();
 });
 
@@ -53,7 +54,7 @@ app.use(cookieParser());
 app.use(express.static(join(__dirname, "public")));
 app.use("/static", express.static(join(__dirname, "static")));
 
-app.use("/api", entryRouter);
+app.use("/api/", entryRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
