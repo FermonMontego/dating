@@ -6,7 +6,6 @@ services:
   frontend:
     build:
       context: ./frontend
-      target: build
     volumes:
       - /app/node_modules
       - ./frontend/:/app
