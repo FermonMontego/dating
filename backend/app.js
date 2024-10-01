@@ -12,9 +12,7 @@ import entryRouter from "#src/routes/entryRouter.js";
 import db from "./db/database.js";
 import { Model, Sequelize } from "sequelize";
 
-class User extends Model {
-
-}
+class User extends Model { }
 
 const model = User.init({
   id: {
@@ -29,10 +27,6 @@ const model = User.init({
 }, {
   sequelize: db
 });
-
-await model.sync();
-
-await model.create({ id: 2, firstName: 'Tests' })
 
 dotenv.config();
 
