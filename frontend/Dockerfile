@@ -22,7 +22,7 @@ RUN ["bun", "run", "build"]
 
 CMD [ "bun", "run", "serve" ]
 
-FROM nginx:stable-alpine
+FROM nginx:stable-alpine as production
 
 COPY --from=build /app/dist /usr/share/nginx/html
 COPY --from=build /app/nginx.conf /etc/nginx/conf.d/default.conf

@@ -1,20 +1,20 @@
 networks:
-  dev:
+  production:
 
 
 services:
   frontend:
     build:
       context: ./frontend
-      target: build
+      target: production
     volumes:
-      - /app/node_modules
       - ./frontend/:/app
-    container_name: frontend_application
+      - /app/node_modules
+    container_name: frontend_production
     ports:
       - "5173:5173"
     networks:
-      - dev
+      - production
     depends_on:
       - db_postgres
 
@@ -26,32 +26,32 @@ services:
       - PG_DB=dating
       - PG_USER=root
       - PG_PASSWORD=root
-      - PG_HOST=db_postgres
+      - PG_HOST=db_postgres_production
     volumes:
-      - /app/node_modules/
       - ./backend/:/app
-    container_name: backend_application
+      - /app/node_modules/
+    container_name: backend_production
     ports:
       - "8081:8081"
     networks:
-      - dev
+      - production
     depends_on:
       - db_postgres
 
   ngnix:
+    container_name: nginx-production
     image: nginx:stable-alpine
     ports:
       - 80:80
     volumes:
       - './nginx.conf:/etc/nginx/nginx.conf'
-    container_name: nginx-dating
     depends_on:
       - backend
       - frontend
     networks:
-      - dev
+      - production
   db_postgres:
-    container_name: db_postgres
+    container_name: db_postgres_production
     image: postgres:16.4
     restart: always
     environment:
@@ -60,21 +60,19 @@ services:
       - POSTGRES_PASSWORD=root
     stdin_open: true
     tty: true
-    ports:
-      - 5432:5432
     networks:
-      - dev
+      - production
     volumes:
-      - db_postgres_data:/var/lib/postgresql/data
+      - db_postgres_data_production:/var/lib/postgresql/data
 
   adminer:
-    container_name: adminer
+    container_name: adminer_production
     image: adminer
     restart: always
     ports:
       - 8080:8080
     networks:
-      - dev
+      - production
 
 volumes:
-  db_postgres_data: {}
+  db_postgres_data_production: {}
