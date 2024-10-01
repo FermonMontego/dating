@@ -44,7 +44,7 @@ module.exports = {
         test: /\.(js|jsx)$/,
         use: ['babel-loader'],
         resolve: {
-          extensions: ['.js', '.jsx'],
+          extensions: ['.js', '.jsx', '.ts', '.tsx'],
         },
         exclude: /node_modules/,
       },
@@ -52,7 +52,7 @@ module.exports = {
         test: /\.(ts|tsx)$/,
         use: ['ts-loader'],
         resolve: {
-          extensions: ['.ts', '.tsx'],
+          extensions: ['.ts', '.tsx', '.js', '.jsx'],
         },
         exclude: /node_modules/,
       },
