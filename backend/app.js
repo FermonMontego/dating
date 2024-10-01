@@ -17,16 +17,26 @@ class User extends Model { }
 const model = User.init({
   id: {
     type: Sequelize.INTEGER,
-    autoincrement: true,
+    autoIncrement: true,
     allowNull: false,
     primaryKey: true
   },
   firstName: {
     type: Sequelize.STRING
+  },
+  lastName: {
+    type: Sequelize.STRING
   }
 }, {
-  sequelize: db
+  sequelize: db,
+  timestamps: true
 });
+
+(async () => {
+  await model.sync().then(async () => {
+    await model.create({ firstName: 'Alfred', lastName: 'Poreg' })
+  })
+})();
 
 dotenv.config();
 
