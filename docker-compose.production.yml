@@ -7,6 +7,7 @@ services:
     build:
       context: ./frontend
       target: production
+    restart: always
     volumes:
       - ./frontend/:/app
       - /app/node_modules
@@ -22,6 +23,7 @@ services:
     build:
       context: ./backend
       target: build
+    restart: always
     environment:
       - PG_DB=dating
       - PG_USER=root
@@ -41,6 +43,7 @@ services:
   ngnix:
     container_name: nginx-production
     image: nginx:stable-alpine
+    restart: always
     ports:
       - 80:80
     volumes:
