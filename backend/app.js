@@ -1,5 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
+import bcrypt from 'bcrypt'
+
 import { dirname, join } from "path";
 
 import cookieParser from "cookie-parser";
@@ -13,7 +15,7 @@ import userModel from '#src/models/User.js';
 
 (async () => {
   await userModel.sync().then(async () => {
-    await userModel.create({ email: 'fermonmantego@gmail.com', username: 'fermonmantego' })
+    await userModel.create({ email: 'fermonmantego@gmail.com', username: 'fermonmantego', age: 22, hash_password: await bcrypt.hash('123123', 8) })
   })
 })();
 

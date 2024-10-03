@@ -12,7 +12,13 @@ class ServiceRegistration {
             }
         })
 
-        console.log(user, 'user from registration service')
+        if (user === null) return false;
+
+        return true;
+    }
+
+    async createUser(userData) {
+
     }
 }
 

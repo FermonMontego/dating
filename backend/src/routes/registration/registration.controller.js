@@ -1,11 +1,14 @@
 import registrationService from "./registration.service.js";
 
 class RegistrationController {
-    registration(req, res) {
+    async registration(req, res) {
         try {
-            registrationService.checkUserExist('fermonmantego@gmail.com', 'fermonmantego');
+            const user = await registrationService.checkUserExist('fermonmantego@gmail.com', 'fermonmantego');
+            if (user) return res.status(400).json({ message: 'Пользователь уже существует' });
+
+            res.status(200).json({ message: 'OK' })
         } catch (error) {
-            console.log(error)
+            res.status(500).json({ message: 'Some error', error });
         }
     }
 

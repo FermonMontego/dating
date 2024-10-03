@@ -40,6 +40,9 @@ const model = User.init({
     city: {
         type: DataTypes.STRING,
         allowNull: true
+    },
+    hash_password: {
+        type: DataTypes.STRING(255),
     }
 }, {
     sequelize,
