@@ -12,6 +12,8 @@ import entryRouter from "#src/routes/entryRouter.js";
 import db from "./db/database.js";
 import { Model, Sequelize } from "sequelize";
 
+import bcrypt from 'bcrypt';
+
 class User extends Model { }
 
 const model = User.init({
@@ -44,8 +46,6 @@ const app = express();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-
-console.log(process.env.PG_HOST, process.env.PG_USER, process.env.PG_PASSWORD, process.env.PG_DB, 'SUKA')
 
 app.set("views", join(__dirname, "src", "views"));
 app.set("view engine", "ejs");
