@@ -7,6 +7,7 @@
     "start:demon": "nodemon --legacy-watch ./bin/www"
   },
   "dependencies": {
+    "@types/node": "^22.7.4",
     "bcrypt": "^5.1.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
@@ -22,7 +23,9 @@
   "module": "app.js",
   "type": "module",
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "@types/express": "^5.0.0",
+    "ts-node": "^10.9.2"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"

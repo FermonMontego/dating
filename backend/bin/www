@@ -8,8 +8,6 @@ import app from "../app.js";
 import debug from "debug";
 import http from "http";
 
-import sequelize from '../db/database.js'
-
 debug("backend-express:server");
 
 /**

@@ -9,34 +9,11 @@ import logger from "morgan";
 
 import entryRouter from "#src/routes/entryRouter.js";
 
-import db from "./db/database.js";
-import { Model, Sequelize } from "sequelize";
-
-import bcrypt from 'bcrypt';
-
-class User extends Model { }
-
-const model = User.init({
-  id: {
-    type: Sequelize.INTEGER,
-    autoIncrement: true,
-    allowNull: false,
-    primaryKey: true
-  },
-  firstName: {
-    type: Sequelize.STRING
-  },
-  lastName: {
-    type: Sequelize.STRING
-  }
-}, {
-  sequelize: db,
-  timestamps: true
-});
+import userModel from '#src/models/User.js';
 
 (async () => {
-  await model.sync().then(async () => {
-    await model.create({ firstName: 'Alfred', lastName: 'Poreg' })
+  await userModel.sync().then(async () => {
+    await userModel.create({ email: 'fermonmantego@gmail.com', username: 'fermonmantego' })
   })
 })();
 

@@ -1,7 +1,9 @@
+import registrationService from "./registration.service.js";
+
 class RegistrationController {
     registration(req, res) {
         try {
-            res.json({ message: 'response from registration route' })
+            registrationService.checkUserExist('fermonmantego@gmail.com', 'fermonmantego');
         } catch (error) {
             console.log(error)
         }

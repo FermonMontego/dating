@@ -1,7 +1,9 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "#root/db/database.js";
 
-class User extends Model {}
+class User extends Model {
+
+}
 
 const model = User.init({
     id: {
@@ -30,8 +32,20 @@ const model = User.init({
     },
     age: {
         type: DataTypes.INTEGER
+    },
+    counrty: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    city: {
+        type: DataTypes.STRING,
+        allowNull: true
     }
 }, {
     sequelize,
     timestamps: true
 })
+
+await model.sync();
+
+export default model;
