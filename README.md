@@ -33,3 +33,5 @@
 - Sequelize
   ###### Testing
   - Jest
+  ###### Validation
+  - express-validation
