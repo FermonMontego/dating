@@ -11,14 +11,6 @@ import logger from "morgan";
 
 import entryRouter from "#src/routes/entryRouter.js";
 
-import userModel from '#src/models/User.js';
-
-(async () => {
-  await userModel.sync().then(async () => {
-    await userModel.create({ email: 'fermonmantego@gmail.com', username: 'fermonmantego', age: 22, hash_password: await bcrypt.hash('123123', 8) })
-  })
-})();
-
 dotenv.config();
 
 const app = express();
