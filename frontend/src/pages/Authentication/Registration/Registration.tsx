@@ -14,19 +14,30 @@ import {
 import { Field, Form, Formik } from 'formik';
 import React, { useCallback } from 'react';
 
-import { http } from '../../../http/http.ts'
+import { useToastNotification } from '../../../hooks/useToastNotification';
+
+import { http } from '../../../http/http'
 
 import { Link as RouterLink } from 'react-router-dom';
+import { TYPES_NOTIFICATION } from '../../../enums/types-notification';
 
 const Registration = () => {
+
+  const { updateToastList } = useToastNotification()
+
   const submitRegistration = useCallback(async (values, actions) => {
+    updateToastList({
+      id: new Date().getTime(),
+      title: 'Ошибка',
+      text: 'Какая-то ошибка',
+      type: TYPES_NOTIFICATION.error
+    });
     await http.post('/registration', {
       ...values
-    })
+    });
+
     console.log(values, actions);
   }, []);
-
-  const subm = useCallback(value => value);
 
   return (
     <Box
