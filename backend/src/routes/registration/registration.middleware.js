@@ -17,8 +17,6 @@ class RegistrationMiddleware {
 
         const result = validationResult(req);
 
-        console.log(result, 'PIDAR')
-
         if (!result.isEmpty()) return res.status(400).json({ message: 'При регистрации произошла ошибка', errors: result.array() })
 
         next();

@@ -1,12 +1,10 @@
 import registrationService from "./registration.service.js";
-import { validationResult } from 'express-validator'
 
 class RegistrationController {
     async registration(req, res) {
         try {
-            const result = validationResult(req);
-            console.log(result, 'resultresultresultresultresultresult')
             const user = await registrationService.checkUserExist('fermonmantego@gmail.com', 'fermonmantego');
+
             if (user) return res.status(400).json({ message: 'Пользователь уже существует' });
 
             res.status(200).json({ message: 'OK' })

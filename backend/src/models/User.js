@@ -5,11 +5,15 @@ class User extends Model {
 
 }
 
-const model = User.init({
+export default User.init({
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
+    },
+    avatar: {
+        type: DataTypes.STRING,
+        allowNull: true,
     },
     username: {
         type: DataTypes.STRING(20),
@@ -47,8 +51,4 @@ const model = User.init({
 }, {
     sequelize,
     timestamps: true
-})
-
-await model.sync();
-
-export default model;
+});
