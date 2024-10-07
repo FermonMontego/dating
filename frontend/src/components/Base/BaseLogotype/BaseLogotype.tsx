@@ -1,9 +1,11 @@
 import { Box, Flex, Heading, Link, Text } from '@chakra-ui/react';
-import React from 'react';
+import React, { FC } from 'react';
 
 import { Link as RouterLink } from 'react-router-dom';
 
-const BaseLogotype = () => {
+type Props = {}
+
+const BaseLogotype: FC<Props> = () => {
   return (
     <Box>
       <RouterLink to={'/'}>
