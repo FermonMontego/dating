@@ -119,8 +119,15 @@ module.exports = {
   },
 
   resolve: {
+    modules: [path.resolve('./node_modules')],
     alias: {
       env: path.resolve(__dirname, 'src/env/'),
+      src: path.resolve(__dirname, 'src/'),
+      components: path.resolve(__dirname, 'src/components/'),
+      assets: path.resolve(__dirname, 'src/assets/'),
+      context: path.resolve(__dirname, 'src/context/'),
+      http: path.resolve(__dirname, 'src', 'http')
     },
+    extensions: ['', '.js', '.jsx', 'ts', 'tsx']
   },
 };

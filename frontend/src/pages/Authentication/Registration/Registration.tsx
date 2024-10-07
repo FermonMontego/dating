@@ -16,7 +16,7 @@ import React, { useCallback } from 'react';
 
 import { useToastNotification } from '../../../hooks/useToastNotification';
 
-import { http } from '../../../http/http'
+import { http } from 'http/http';
 
 import { Link as RouterLink } from 'react-router-dom';
 import { TYPES_NOTIFICATION } from '../../../enums/types-notification';

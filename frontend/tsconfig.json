@@ -8,13 +8,27 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
     "jsx": "react",
+    "strict": true,
     "paths": {
-      "*": [
-        "node_modules/*",
-        "src/types/*"
+      "env/*": [
+        "src/env/*"
+      ],
+      "src/*": [
+        "src/*"
+      ],
+      "components/*": [
+        "src/components/*"
+      ],
+      "assets/*": [
+        "src/assets/*"
+      ],
+      "context/*": [
+        "src/context/*"
+      ],
+      "http/*": [
+        "src/http/*"
       ]
-    },
-    "strict": true
+    }
   },
   "include": [
     "src/**/*"

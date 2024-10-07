@@ -6,7 +6,7 @@ import { TYPES_NOTIFICATION } from "../enums/types-notification";
 
 type ToastNotificationType = {
     toastList: ToastElementType[],
-    setToastList: (toast: ToastElementType) => void;
+    updateToastList: (toast: ToastElementType) => void;
 }
 
 type ToastElementType = {
@@ -27,7 +27,7 @@ export const ToastProvider: FC<Props> = ({ children }) => {
         setToastList((prevToasts: ToastElementType[]) => [...prevToasts, { ...addToastInformation }]);
     }, [setToastList])
 
-    return <ToastContext.Provider value={{ updateToastList }}>
+    return <ToastContext.Provider value={{ updateToastList, toastList }}>
 
         {
             toastList && <div className={`toast-notifications__container`}>
