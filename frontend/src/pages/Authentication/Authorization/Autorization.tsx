@@ -2,6 +2,8 @@ import {
   Box,
   Button,
   Input,
+  Stack,
+  Text,
 } from '@chakra-ui/react';
 import React, { useCallback } from 'react';
 
@@ -16,7 +18,7 @@ const Autorization = () => {
     mode: 'onBlur'
   });
 
-  const submitForm = useCallback(async (values, actions) => {
+  const submitForm = useCallback(async (data: any) => {
     await http.post('/auth', {
       name: 'Gosha',
       surname: 'Rubchinsky',
@@ -29,11 +31,9 @@ const Autorization = () => {
     }).then(response => {
       console.log(response, 'response');
     })
-
-    setTimeout(() => actions.setSubmitting(false), 3000);
   }, []);
 
-  const handleSubmitError = useCallback((error: Error) => {
+  const handleSubmitError = useCallback((error: Error): void => {
     console.log(error)
   }, [])
 
@@ -46,8 +46,24 @@ const Autorization = () => {
       margin={'50px auto 0px'}
     >
       <Form onSubmit={handleSubmit(submitForm, handleSubmitError)}>
-        <Input {...register('test')} />
-        <Button type={'submit'}>Зарегистрироваться</Button>
+        <Text fontSize={'18px'} fontWeight={600} textAlign={'center'}>Регистрация</Text>
+
+        <Stack gap={4}>
+          <Stack>
+            <Text>Ваше имя</Text>
+            <Input {...register('firstName')} placeholder='Введите имя' />
+          </Stack>
+          <Stack>
+            <Text>Ваша фамилия</Text>
+            <Input {...register('lastName')} placeholder='Введите фамилию' />
+          </Stack>
+          <Stack>
+            <Text>Ваш возраст</Text>
+            <Input {...register('age')} placeholder='Введите ваш возраст' type='date' />
+          </Stack>
+        </Stack>
+
+        <Button mt={8} type={'submit'}>Зарегистрироваться</Button>
       </Form>
     </Box>
   );
