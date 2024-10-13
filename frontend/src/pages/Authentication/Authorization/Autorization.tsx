@@ -1,6 +1,8 @@
 import {
   Box,
   Button,
+  Center,
+  Divider,
   Input,
   Stack,
   Text,
@@ -10,7 +12,8 @@ import React, { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { http } from '../../../http/http';
-import { Form } from 'react-router-dom';
+import { Form, Link } from 'react-router-dom';
+import AuthFormWidget from 'src/widgets/AuthFormWidget/AuthFormWidget';
 
 const Autorization = () => {
 
@@ -38,34 +41,7 @@ const Autorization = () => {
   }, [])
 
   return (
-    <Box
-      border={'1px solid var(--chakra-colors-chakra-border-color)'}
-      p={8}
-      borderRadius={'16px'}
-      maxW={440}
-      margin={'50px auto 0px'}
-    >
-      <Form onSubmit={handleSubmit(submitForm, handleSubmitError)}>
-        <Text fontSize={'18px'} fontWeight={600} textAlign={'center'}>Регистрация</Text>
-
-        <Stack gap={4}>
-          <Stack>
-            <Text>Ваше имя</Text>
-            <Input {...register('firstName')} placeholder='Введите имя' />
-          </Stack>
-          <Stack>
-            <Text>Ваша фамилия</Text>
-            <Input {...register('lastName')} placeholder='Введите фамилию' />
-          </Stack>
-          <Stack>
-            <Text>Ваш возраст</Text>
-            <Input {...register('age')} placeholder='Введите ваш возраст' type='date' />
-          </Stack>
-        </Stack>
-
-        <Button mt={8} type={'submit'}>Зарегистрироваться</Button>
-      </Form>
-    </Box>
+    <AuthFormWidget />
   );
 };
 
