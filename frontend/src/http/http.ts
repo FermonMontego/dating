@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import {env} from '../env/env'
+import { env } from '../env/env';
 
 const http = axios.create({
   baseURL: env.base_dev_url,

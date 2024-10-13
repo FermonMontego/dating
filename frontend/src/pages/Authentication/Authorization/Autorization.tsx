@@ -16,33 +16,32 @@ import { Form, Link } from 'react-router-dom';
 import AuthFormWidget from 'src/widgets/AuthFormWidget/AuthFormWidget';
 
 const Autorization = () => {
-
   const { handleSubmit, register } = useForm({
-    mode: 'onBlur'
+    mode: 'onBlur',
   });
 
   const submitForm = useCallback(async (data: any) => {
-    await http.post('/auth', {
-      name: 'Gosha',
-      surname: 'Rubchinsky',
-      age: 40,
-      city: 'st. Petersburg',
-      address: {
-        street: 'Улица солевая',
-        home: '99'
-      }
-    }).then(response => {
-      console.log(response, 'response');
-    })
+    await http
+      .post('/auth', {
+        name: 'Gosha',
+        surname: 'Rubchinsky',
+        age: 40,
+        city: 'st. Petersburg',
+        address: {
+          street: 'Улица солевая',
+          home: '99',
+        },
+      })
+      .then(response => {
+        console.log(response, 'response');
+      });
   }, []);
 
   const handleSubmitError = useCallback((error: Error): void => {
-    console.log(error)
-  }, [])
+    console.log(error);
+  }, []);
 
-  return (
-    <AuthFormWidget />
-  );
+  return <AuthFormWidget />;
 };
 
 export default Autorization;

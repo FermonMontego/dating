@@ -1,7 +1,5 @@
 class AuthService {
-    login() {
-
-    }
+  login() {}
 }
 
 export default new AuthService();

@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 
 import { Link as RouterLink } from 'react-router-dom';
 
-type Props = {}
+type Props = {};
 
 const BaseLogotype: FC<Props> = () => {
   return (

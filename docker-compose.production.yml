@@ -1,7 +1,6 @@
 networks:
   production:
 
-
 services:
   frontend:
     build:
@@ -13,7 +12,7 @@ services:
       - /app/node_modules
     container_name: frontend_production
     ports:
-      - "5173:5173"
+      - '5173:5173'
     networks:
       - production
     depends_on:
@@ -34,7 +33,7 @@ services:
       - /app/node_modules/
     container_name: backend_production
     ports:
-      - "8081:8081"
+      - '8081:8081'
     networks:
       - production
     depends_on:

@@ -126,8 +126,8 @@ module.exports = {
       components: path.resolve(__dirname, 'src/components/'),
       assets: path.resolve(__dirname, 'src/assets/'),
       context: path.resolve(__dirname, 'src/context/'),
-      http: path.resolve(__dirname, 'src', 'http')
+      http: path.resolve(__dirname, 'src', 'http'),
     },
-    extensions: ['', '.js', '.jsx', 'ts', 'tsx']
+    extensions: ['', '.js', '.jsx', 'ts', 'tsx'],
   },
 };

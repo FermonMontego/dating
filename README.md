@@ -24,7 +24,8 @@
 - Docker
 
 ###### Server
-  Nginx
+
+Nginx
 
 ###### Backend
 

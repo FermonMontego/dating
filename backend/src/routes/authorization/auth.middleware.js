@@ -1,3 +1,1 @@
-class AuthMiddleware {
-
-}
+class AuthMiddleware {}
