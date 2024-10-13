@@ -63,10 +63,23 @@ module.exports = {
       {
         test: /\.(scss|css)$/,
         use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: '[name]__[local]___[hash:base64:5]',
+              },
+              sourceMap: true,
+              importLoaders: 2,
+            },
+          },
           'postcss-loader',
-          'sass-loader',
+          {
+            loader: 'sass-loader',
+          },
         ],
       },
       {
@@ -128,6 +141,6 @@ module.exports = {
       context: path.resolve(__dirname, 'src/context/'),
       http: path.resolve(__dirname, 'src', 'http'),
     },
-    extensions: ['', '.js', '.jsx', 'ts', 'tsx'],
+    extensions: ['', '.js', '.jsx', '.ts', '.tsx'],
   },
 };

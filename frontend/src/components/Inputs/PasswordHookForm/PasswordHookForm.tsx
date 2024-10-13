@@ -1,7 +1,10 @@
 import { Input, Stack, Text } from '@chakra-ui/react';
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
+
+import * as classes from './classes.module.scss';
 
 import { Controller } from 'react-hook-form';
+import ToggleShowPassword from 'src/components/UI/ToggleShowPassword/ToggleShowPassword';
 
 type Props = {
   control: any;
@@ -24,14 +27,20 @@ const PasswordHookForm: FC<Props> = ({
         return (
           <Stack>
             {label && <Text fontSize={14}>{label}</Text>}
-            <Input
-              placeholder={placeholder}
-              name={name}
-              onChange={onChange}
-              onBlur={onBlur}
-              value={value}
-              type="password"
-            />
+            <label className={classes.labelPasswordInput}>
+              <Input
+                placeholder={placeholder}
+                name={name}
+                onChange={onChange}
+                onBlur={onBlur}
+                value={value}
+                type="password"
+              />
+
+              <ToggleShowPassword
+                className={classes.labelPasswordInput__passwordShow}
+              />
+            </label>
           </Stack>
         );
       }}
