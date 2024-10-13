@@ -2,11 +2,11 @@ import React, { FC, useCallback } from 'react';
 import BaseForm from 'src/components/Forms/BaseForm/BaseForm';
 
 import { useForm } from 'react-hook-form';
+
 import { Button, Divider, Input, Stack, Text } from '@chakra-ui/react';
 import RadioHookForm from 'src/components/Inputs/RadioHookForm/RadioHookForm';
 import { genderOptions } from 'src/constants/options/options';
 import { useNavigate } from 'react-router-dom';
-import PasswordLockIcon from 'src/components/Icons/PasswordLockIcon';
 import PasswordHookForm from 'src/components/Inputs/PasswordHookForm/PasswordHookForm';
 
 type Props = {};
@@ -22,6 +22,11 @@ const RegistrationFormWidget: FC<Props> = ({}) => {
     mode: 'onBlur',
     defaultValues: {
       gender: 'male',
+      password: '',
+      password_confirm: '',
+      login: '',
+      firstName: '',
+      lastName: '',
     },
   });
   return (

@@ -1,5 +1,5 @@
 import { Input, Stack, Text } from '@chakra-ui/react';
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
 import * as classes from './classes.module.scss';
 
@@ -19,6 +19,7 @@ const PasswordHookForm: FC<Props> = ({
   label,
   placeholder = 'Введите пароль',
 }) => {
+  const [isShowPassword, setIsShowPassword] = useState<boolean>(false);
   return (
     <Controller
       control={control}
@@ -34,10 +35,11 @@ const PasswordHookForm: FC<Props> = ({
                 onChange={onChange}
                 onBlur={onBlur}
                 value={value}
-                type="password"
+                type={isShowPassword ? 'text' : 'password'}
               />
-
               <ToggleShowPassword
+                isShow={isShowPassword}
+                setState={setIsShowPassword}
                 className={classes.labelPasswordInput__passwordShow}
               />
             </label>

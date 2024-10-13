@@ -1,5 +1,7 @@
 import React, {
+  Dispatch,
   FC,
+  SetStateAction,
   SVGProps,
   SyntheticEvent,
   useCallback,
@@ -10,8 +12,9 @@ import PasswordLockIcon from 'src/components/Icons/PasswordLockIcon';
 import classNames from 'classnames';
 
 type Props = {
-  onClick?: (state: boolean) => void;
+  setState?: Dispatch<SetStateAction<boolean>>;
   className?: string;
+  isShow: boolean;
 };
 
 const stylesIsShow: SVGProps<SVGSVGElement> = {
@@ -19,14 +22,16 @@ const stylesIsShow: SVGProps<SVGSVGElement> = {
   stroke: '#000',
 };
 
-const ToggleShowPassword: FC<Props> = ({ onClick, className }) => {
-  const [isShow, setIsShow] = useState<boolean>(false);
-  const handleClick = useCallback((event: SyntheticEvent) => {
-    event.preventDefault();
-    event.stopPropagation();
-    setIsShow(prevState => !prevState);
-    onClick && onClick(isShow);
-  }, []);
+const ToggleShowPassword: FC<Props> = ({ setState, className, isShow }) => {
+  const handleClick = useCallback(
+    (event: SyntheticEvent) => {
+      event.stopPropagation();
+      event.preventDefault();
+
+      setState && setState(prevState => !prevState);
+    },
+    [setState],
+  );
 
   return (
     <PasswordLockIcon
