@@ -68,13 +68,6 @@ module.exports = {
           },
           {
             loader: 'css-loader',
-            options: {
-              modules: {
-                localIdentName: '[name]__[local]___[hash:base64:5]',
-              },
-              sourceMap: true,
-              importLoaders: 2,
-            },
           },
           'postcss-loader',
           {

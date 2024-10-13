@@ -5,7 +5,6 @@ import React, {
   SVGProps,
   SyntheticEvent,
   useCallback,
-  useState,
 } from 'react';
 import PasswordLockIcon from 'src/components/Icons/PasswordLockIcon';
 

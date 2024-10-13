@@ -1,9 +1,11 @@
 .labelPasswordInput {
   position: relative;
+  user-select: none;
 }
 
 .labelPasswordInput__passwordShow {
   position: absolute;
+  z-index: 2;
   top: 50%;
   right: 16px;
 

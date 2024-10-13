@@ -3,19 +3,44 @@ import BaseForm from 'src/components/Forms/BaseForm/BaseForm';
 
 import { useForm } from 'react-hook-form';
 
-import { Button, Divider, Input, Stack, Text } from '@chakra-ui/react';
+import {
+  Button,
+  Divider,
+  Input,
+  Stack,
+  Text,
+  useToast,
+} from '@chakra-ui/react';
 import RadioHookForm from 'src/components/Inputs/RadioHookForm/RadioHookForm';
 import { genderOptions } from 'src/constants/options/options';
 import { useNavigate } from 'react-router-dom';
 import PasswordHookForm from 'src/components/Inputs/PasswordHookForm/PasswordHookForm';
+import { http } from 'src/http/http';
 
 type Props = {};
 
 const RegistrationFormWidget: FC<Props> = ({}) => {
   const navigate = useNavigate();
 
-  const submitRegistrationForm = useCallback((data: any) => {
-    console.log(data);
+  const toast = useToast({
+    position: 'bottom-right',
+  });
+
+  const submitRegistrationForm = useCallback(async (data: any) => {
+    await http
+      .post('/registration', {
+        ...data,
+      })
+      .then(response => {
+        console.log(response);
+      })
+      .catch(err => {
+        toast({
+          title: 'Ошибка',
+          description: err?.message,
+          duration: 3000,
+        });
+      });
   }, []);
 
   const { handleSubmit, register, control } = useForm({

@@ -9,4 +9,17 @@ const http = axios.create({
   },
 });
 
+http.interceptors.response.use(
+  function (config) {
+    return config;
+  },
+  function (error) {
+    const { status, response } = error;
+
+    if (status === 400) {
+      throw new Error(response?.data?.message);
+    }
+  },
+);
+
 export { http };
