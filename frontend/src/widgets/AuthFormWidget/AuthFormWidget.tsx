@@ -3,14 +3,17 @@ import BaseForm from 'src/components/Forms/BaseForm/BaseForm';
 
 import { useForm } from 'react-hook-form';
 import { Button, Center, Input, Stack, Text } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 type Props = {} & PropsWithChildren;
 
 const AuthFormWidget: FC<Props> = ({ children }) => {
+  const navigate = useNavigate();
+
   const { handleSubmit, register } = useForm({
     mode: 'onBlur',
   });
+
   const submitAuthForm = useCallback((data: any) => {
     console.log(data);
   }, []);
@@ -36,9 +39,12 @@ const AuthFormWidget: FC<Props> = ({ children }) => {
         </Stack>
       </Stack>
 
-      <Button mt={8} type={'submit'}>
-        Войти
-      </Button>
+      <Stack mt={8} gap={4}>
+        <Button onClick={() => navigate('/registration')}>
+          Нет аккаунта? Регистрация
+        </Button>
+        <Button type={'submit'}>Войти</Button>
+      </Stack>
     </BaseForm>
   );
 };
