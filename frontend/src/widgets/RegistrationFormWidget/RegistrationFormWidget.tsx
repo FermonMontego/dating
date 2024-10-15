@@ -82,7 +82,7 @@ const RegistrationFormWidget: FC<Props> = ({}) => {
 
       <Divider mt={4} mb={4} />
 
-      <Stack gap={4}>
+      <Stack gap={2}>
         <Stack>
           <Text fontSize={14}>Придумайте логин</Text>
           <Input {...register('login')} placeholder={'Логин (латиница)'} />
@@ -94,11 +94,21 @@ const RegistrationFormWidget: FC<Props> = ({}) => {
         </Stack>
         <Stack>
           <Text fontSize={14}>Ваше имя</Text>
-          <Input {...register('firstName')} placeholder={'Введите имя'} />
+          <Input {...register('first_name')} placeholder={'Введите имя'} />
+          {formErrors?.first_name?.message && (
+            <Text fontSize={12} color={'tomato'}>
+              {formErrors.first_name.message}
+            </Text>
+          )}
         </Stack>
         <Stack>
           <Text fontSize={14}>Ваша фамилия</Text>
-          <Input {...register('lastName')} placeholder={'Введите фамилию'} />
+          <Input {...register('last_name')} placeholder={'Введите фамилию'} />
+          {formErrors?.last_name?.message && (
+            <Text fontSize={12} color={'tomato'}>
+              {formErrors.last_name.message}
+            </Text>
+          )}
         </Stack>
         <Stack>
           <Text fontSize={14}>Дата рождения</Text>
@@ -107,6 +117,11 @@ const RegistrationFormWidget: FC<Props> = ({}) => {
             placeholder={'Введите дату рождения'}
             type="date"
           />
+          {formErrors?.birthday?.message && (
+            <Text fontSize={12} color={'tomato'}>
+              {formErrors.birthday.message}
+            </Text>
+          )}
         </Stack>
         <Stack>
           <RadioHookForm
@@ -123,12 +138,24 @@ const RegistrationFormWidget: FC<Props> = ({}) => {
           placeholder="Придумайте пароль"
         />
 
+        {formErrors?.password?.message && (
+          <Text fontSize={12} color={'tomato'}>
+            {formErrors.password.message}
+          </Text>
+        )}
+
         <PasswordHookForm
           control={control}
           name={'password_confirm'}
           label="Повторите пароль"
           placeholder="Повторите пароль"
         />
+
+        {formErrors?.password_confirm?.message && (
+          <Text fontSize={12} color={'tomato'}>
+            {formErrors.password_confirm.message}
+          </Text>
+        )}
 
         <Stack mt={4}>
           <Button onClick={() => navigate('/')}>Уже есть аккаунт?</Button>
