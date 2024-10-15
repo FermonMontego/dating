@@ -16,15 +16,13 @@ import { genderOptions } from 'src/constants/options/options';
 import { useNavigate } from 'react-router-dom';
 import PasswordHookForm from 'src/components/Inputs/PasswordHookForm/PasswordHookForm';
 import { http } from 'src/http/http';
+import { validateSchema } from 'src/validators/validateSchema';
+import { getErrorFieldsFromBack } from 'src/helpers/errors/getErrorFieldsFromBack';
 
 type Props = {};
 
 const RegistrationFormWidget: FC<Props> = ({}) => {
   const navigate = useNavigate();
-
-  const toast = useToast({
-    position: 'bottom-right',
-  });
 
   const {
     handleSubmit,
@@ -51,28 +49,14 @@ const RegistrationFormWidget: FC<Props> = ({}) => {
       })
       .then(response => {
         if (response?.errors) {
-          const errors = response?.errors.reduce((acc, error) => {
-            acc.push({
-              message: error.msg,
-              field: error.path,
-            });
-
-            return acc;
-          }, []);
-
-          errors.forEach(error => {
-            setError(`${error.field}`, { message: error.message });
-          });
+          const errorsFromBack = getErrorFieldsFromBack(response.errors);
+          console.log(errorsFromBack, 'errorsFromBack');
         }
       })
       .catch(err => {
         console.log(err);
       });
   }, []);
-
-  useEffect(() => {
-    console.log(formErrors, 123);
-  }, [setError, formErrors]);
 
   return (
     <BaseForm onSubmitForm={handleSubmit(submitRegistrationForm)}>
@@ -86,29 +70,14 @@ const RegistrationFormWidget: FC<Props> = ({}) => {
         <Stack>
           <Text fontSize={14}>Придумайте логин</Text>
           <Input {...register('login')} placeholder={'Логин (латиница)'} />
-          {formErrors?.login?.message && (
-            <Text fontSize={12} color={'tomato'}>
-              {formErrors.login.message}
-            </Text>
-          )}
         </Stack>
         <Stack>
           <Text fontSize={14}>Ваше имя</Text>
           <Input {...register('first_name')} placeholder={'Введите имя'} />
-          {formErrors?.first_name?.message && (
-            <Text fontSize={12} color={'tomato'}>
-              {formErrors.first_name.message}
-            </Text>
-          )}
         </Stack>
         <Stack>
           <Text fontSize={14}>Ваша фамилия</Text>
           <Input {...register('last_name')} placeholder={'Введите фамилию'} />
-          {formErrors?.last_name?.message && (
-            <Text fontSize={12} color={'tomato'}>
-              {formErrors.last_name.message}
-            </Text>
-          )}
         </Stack>
         <Stack>
           <Text fontSize={14}>Дата рождения</Text>
@@ -117,11 +86,6 @@ const RegistrationFormWidget: FC<Props> = ({}) => {
             placeholder={'Введите дату рождения'}
             type="date"
           />
-          {formErrors?.birthday?.message && (
-            <Text fontSize={12} color={'tomato'}>
-              {formErrors.birthday.message}
-            </Text>
-          )}
         </Stack>
         <Stack>
           <RadioHookForm
@@ -138,24 +102,12 @@ const RegistrationFormWidget: FC<Props> = ({}) => {
           placeholder="Придумайте пароль"
         />
 
-        {formErrors?.password?.message && (
-          <Text fontSize={12} color={'tomato'}>
-            {formErrors.password.message}
-          </Text>
-        )}
-
         <PasswordHookForm
           control={control}
           name={'password_confirm'}
           label="Повторите пароль"
           placeholder="Повторите пароль"
         />
-
-        {formErrors?.password_confirm?.message && (
-          <Text fontSize={12} color={'tomato'}>
-            {formErrors.password_confirm.message}
-          </Text>
-        )}
 
         <Stack mt={4}>
           <Button onClick={() => navigate('/')}>Уже есть аккаунт?</Button>
