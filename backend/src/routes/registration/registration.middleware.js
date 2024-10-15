@@ -18,12 +18,10 @@ class RegistrationMiddleware {
     const result = validationResult(req);
 
     if (!result.isEmpty())
-      return res
-        .status(400)
-        .json({
-          message: 'При регистрации произошла ошибка',
-          errors: result.array(),
-        });
+      return res.status(400).json({
+        message: 'При регистрации произошла ошибка',
+        errors: result.array(),
+      });
 
     next();
   }

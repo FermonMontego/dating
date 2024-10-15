@@ -11,6 +11,8 @@ import PasswordHookForm from 'src/components/Inputs/PasswordHookForm/PasswordHoo
 import { http } from 'src/http/http';
 import { getErrorFieldsFromBack } from 'src/helpers/errors/getErrorFieldsFromBack';
 
+import { zodResolver } from '@hookform/resolvers/zod';
+
 type Props = {};
 
 const RegistrationFormWidget: FC<Props> = ({}) => {
