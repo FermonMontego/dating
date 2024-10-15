@@ -17,7 +17,7 @@ http.interceptors.response.use(
     const { status, response } = error;
 
     if (status === 400) {
-      throw new Error(response?.data?.message);
+      return response?.data;
     }
   },
 );

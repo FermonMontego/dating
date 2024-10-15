@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from 'react';
+import React, { FC, useCallback, useEffect } from 'react';
 import BaseForm from 'src/components/Forms/BaseForm/BaseForm';
 
 import { useForm } from 'react-hook-form';
@@ -26,24 +26,13 @@ const RegistrationFormWidget: FC<Props> = ({}) => {
     position: 'bottom-right',
   });
 
-  const submitRegistrationForm = useCallback(async (data: any) => {
-    await http
-      .post('/registration', {
-        ...data,
-      })
-      .then(response => {
-        console.log(response);
-      })
-      .catch(err => {
-        toast({
-          title: 'Ошибка',
-          description: err?.message,
-          duration: 3000,
-        });
-      });
-  }, []);
-
-  const { handleSubmit, register, control } = useForm({
+  const {
+    handleSubmit,
+    register,
+    control,
+    setError,
+    formState: { errors: formErrors },
+  } = useForm({
     mode: 'onBlur',
     defaultValues: {
       gender: 'male',
@@ -54,6 +43,37 @@ const RegistrationFormWidget: FC<Props> = ({}) => {
       lastName: '',
     },
   });
+
+  const submitRegistrationForm = useCallback(async (data: any) => {
+    await http
+      .post('/registration', {
+        ...data,
+      })
+      .then(response => {
+        if (response?.errors) {
+          const errors = response?.errors.reduce((acc, error) => {
+            acc.push({
+              message: error.msg,
+              field: error.path,
+            });
+
+            return acc;
+          }, []);
+
+          errors.forEach(error => {
+            setError(`${error.field}`, { message: error.message });
+          });
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    console.log(formErrors, 123);
+  }, [setError, formErrors]);
+
   return (
     <BaseForm onSubmitForm={handleSubmit(submitRegistrationForm)}>
       <Text fontSize={'21px'} fontWeight={600} textAlign={'center'}>
@@ -66,6 +86,11 @@ const RegistrationFormWidget: FC<Props> = ({}) => {
         <Stack>
           <Text fontSize={14}>Придумайте логин</Text>
           <Input {...register('login')} placeholder={'Логин (латиница)'} />
+          {formErrors?.login?.message && (
+            <Text fontSize={12} color={'tomato'}>
+              {formErrors.login.message}
+            </Text>
+          )}
         </Stack>
         <Stack>
           <Text fontSize={14}>Ваше имя</Text>
