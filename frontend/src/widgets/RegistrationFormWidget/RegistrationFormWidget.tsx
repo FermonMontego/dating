@@ -3,20 +3,12 @@ import BaseForm from 'src/components/Forms/BaseForm/BaseForm';
 
 import { useForm } from 'react-hook-form';
 
-import {
-  Button,
-  Divider,
-  Input,
-  Stack,
-  Text,
-  useToast,
-} from '@chakra-ui/react';
+import { Button, Divider, Input, Stack, Text } from '@chakra-ui/react';
 import RadioHookForm from 'src/components/Inputs/RadioHookForm/RadioHookForm';
 import { genderOptions } from 'src/constants/options/options';
 import { useNavigate } from 'react-router-dom';
 import PasswordHookForm from 'src/components/Inputs/PasswordHookForm/PasswordHookForm';
 import { http } from 'src/http/http';
-import { validateSchema } from 'src/validators/validateSchema';
 import { getErrorFieldsFromBack } from 'src/helpers/errors/getErrorFieldsFromBack';
 
 type Props = {};
@@ -26,8 +18,8 @@ const RegistrationFormWidget: FC<Props> = ({}) => {
 
   const {
     handleSubmit,
-    register,
     control,
+    register,
     setError,
     formState: { errors: formErrors },
   } = useForm({
@@ -37,8 +29,9 @@ const RegistrationFormWidget: FC<Props> = ({}) => {
       password: '',
       password_confirm: '',
       login: '',
-      firstName: '',
-      lastName: '',
+      last_name: '',
+      first_name: '',
+      birthday: '',
     },
   });
 

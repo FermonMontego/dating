@@ -6,6 +6,7 @@
     "target": "ES6",
     "noImplicitAny": false,
     "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
     "baseUrl": "./",
     "jsx": "react",
     "strict": true,
