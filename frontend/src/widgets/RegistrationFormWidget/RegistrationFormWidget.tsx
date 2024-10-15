@@ -12,20 +12,32 @@ import { http } from 'src/http/http';
 import { getErrorFieldsFromBack } from 'src/helpers/errors/getErrorFieldsFromBack';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { string, z } from 'zod';
 
 type Props = {};
 
 const RegistrationFormWidget: FC<Props> = ({}) => {
   const navigate = useNavigate();
 
+  const schemaFormValidate = z.object({
+    gender: string({ message: 'Обязательное поле' }),
+    login: string()
+      .min(6, { message: 'Минимальная длинна логина 6 символов' })
+      .regex(/[^А-Яа-я]/gi, {
+        message: 'Поле может содержать только латинские символы',
+      }),
+    last_name: string({ message: 'Обязательное поле' }),
+    first_name: string({ message: 'Обязательное поле' }),
+  });
+
   const {
     handleSubmit,
     control,
     register,
-    setError,
-    formState: { errors: formErrors },
+    formState: { errors },
   } = useForm({
     mode: 'onBlur',
+    resolver: zodResolver(schemaFormValidate),
     defaultValues: {
       gender: 'male',
       password: '',
@@ -65,6 +77,11 @@ const RegistrationFormWidget: FC<Props> = ({}) => {
         <Stack>
           <Text fontSize={14}>Придумайте логин</Text>
           <Input {...register('login')} placeholder={'Логин (латиница)'} />
+          {errors.login?.message && (
+            <Text fontSize={12} color={'tomato'}>
+              {errors.login.message}
+            </Text>
+          )}
         </Stack>
         <Stack>
           <Text fontSize={14}>Ваше имя</Text>
