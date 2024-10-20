@@ -13,6 +13,7 @@ import { getErrorFieldsFromBack } from 'src/helpers/errors/getErrorFieldsFromBac
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { string, z } from 'zod';
+import { increment } from 'src/store';
 
 type Props = {};
 
@@ -65,8 +66,18 @@ const RegistrationFormWidget: FC<Props> = ({}) => {
       });
   }, []);
 
+  const submitRegistrationFormError = useCallback(data => {
+    increment();
+    console.log(data);
+  }, []);
+
   return (
-    <BaseForm onSubmitForm={handleSubmit(submitRegistrationForm)}>
+    <BaseForm
+      onSubmitForm={handleSubmit(
+        submitRegistrationForm,
+        submitRegistrationFormError,
+      )}
+    >
       <Text fontSize={'21px'} fontWeight={600} textAlign={'center'}>
         Регистрация
       </Text>
