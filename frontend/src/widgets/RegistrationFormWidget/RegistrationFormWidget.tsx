@@ -15,6 +15,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z, string } from 'zod';
 
 import { increment } from 'src/store';
+import InputField from 'src/components/Base/InputField/InputField';
 
 type Props = {};
 
@@ -86,15 +87,12 @@ const RegistrationFormWidget: FC<Props> = ({}) => {
       <Divider mt={4} mb={4} />
 
       <Stack gap={2}>
-        <Stack>
-          <Text fontSize={14}>Придумайте логин</Text>
-          <Input {...register('login')} placeholder={'Логин (латиница)'} />
-          {errors.login?.message && (
-            <Text fontSize={12} color={'tomato'}>
-              {errors.login.message}
-            </Text>
-          )}
-        </Stack>
+        <InputField
+          control={control}
+          name="login"
+          placeholder="Придумайте логин"
+          label={'Введите Логин'}
+        />
         <Stack>
           <Text fontSize={14}>Ваше имя</Text>
           <Input {...register('first_name')} placeholder={'Введите имя'} />
