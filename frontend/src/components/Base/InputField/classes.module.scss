@@ -1,2 +1,12 @@
 .wrapperInputField {
+  &__errorFieldMessage {
+    color: var(--primary-error-color);
+    font-size: 14px;
+  }
+
+  &__errorFieldBorder {
+    border-color: var(--primary-error-color) !important;
+    outline: var(--primary-error-color) !important;
+    box-shadow: 0 0 6px var(--primary-error-color-50) !important;
+  }
 }
