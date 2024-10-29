@@ -12,7 +12,8 @@ import { http } from 'src/http/http';
 import { getErrorFieldsFromBack } from 'src/helpers/errors/getErrorFieldsFromBack';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { string, z } from 'zod';
+import {z, string} from 'zod';
+
 import { increment } from 'src/store';
 
 type Props = {};
