@@ -4,7 +4,15 @@ class RegistrationController {
   async registration(req, res) {
     try {
       const valuesBody = req.body;
-      console.log(valuesBody);
+
+      if (
+        !registrationService.checkPasswordCompare(
+          valuesBody.password,
+          valuesBody.password_confirm,
+        )
+      )
+        return res.status(500).json({ message: 'Пароли не совпадают' });
+
       const userIsExist = await registrationService.checkUserExist(
         valuesBody.login,
       );

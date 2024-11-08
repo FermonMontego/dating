@@ -1,11 +1,12 @@
 import User from '#src/models/User.js';
+import bcrypt from 'bcrypt';
 import { Op } from 'sequelize';
 
 class ServiceRegistration {
   async register(data) {
-    console.log(data);
+    const prepareData = this.prepareDataForRegister(data);
 
-    return true;
+    return prepareData;
   }
 
   async checkUserExist(login) {
@@ -22,7 +23,17 @@ class ServiceRegistration {
     return true;
   }
 
-  async createUser(userData) {}
+  checkPasswordCompare(password, password_confirm) {
+    return password === password_confirm;
+  }
+
+  async prepareDataForRegister(data) {
+    return {
+      ...data,
+      password: await bcrypt.hash(data.password, 8),
+      password_confirm: await bcrypt.hash(data.password_confirm, 8),
+    };
+  }
 }
 
 export default new ServiceRegistration();
