@@ -31,6 +31,8 @@ const RegistrationFormWidget: FC<Props> = ({}) => {
       }),
     last_name: string({ message: 'Обязательное поле' }),
     first_name: string({ message: 'Обязательное поле' }),
+    password: string({ message: 'Это обязательное поле' }),
+    password_confirm: string({ message: 'Это обязательное поле' }),
   });
 
   const {
@@ -119,14 +121,14 @@ const RegistrationFormWidget: FC<Props> = ({}) => {
 
         <PasswordHookForm
           control={control}
-          name={'password'}
+          name="password"
           label="Пароль"
           placeholder="Придумайте пароль"
         />
 
         <PasswordHookForm
           control={control}
-          name={'password_confirm'}
+          name="password_confirm"
           label="Повторите пароль"
           placeholder="Повторите пароль"
         />

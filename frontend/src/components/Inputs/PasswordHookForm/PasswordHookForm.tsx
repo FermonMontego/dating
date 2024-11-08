@@ -24,7 +24,7 @@ const PasswordHookForm: FC<Props> = ({
     <Controller
       control={control}
       name={name}
-      render={({ field: { onChange, value, onBlur } }) => {
+      render={({ field: { onChange, value, onBlur, ref } }) => {
         return (
           <Stack>
             {label && <Text fontSize={14}>{label}</Text>}
@@ -34,6 +34,7 @@ const PasswordHookForm: FC<Props> = ({
                 name={name}
                 onChange={onChange}
                 onBlur={onBlur}
+                ref={ref}
                 value={value}
                 type={isShowPassword ? 'text' : 'password'}
               />

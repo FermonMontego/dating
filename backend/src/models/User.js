@@ -14,7 +14,7 @@ export default User.init(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    username: {
+    login: {
       type: DataTypes.STRING(20),
     },
     email: {

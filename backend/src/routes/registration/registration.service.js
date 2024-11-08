@@ -2,12 +2,17 @@ import User from '#src/models/User.js';
 import { Op } from 'sequelize';
 
 class ServiceRegistration {
-  async checkUserExist(email, username) {
+  async register(data) {
+    console.log(data);
+
+    return true;
+  }
+
+  async checkUserExist(login) {
     const user = await User.findOne({
       where: {
         [Op.or]: {
-          username: username,
-          email: email,
+          login: login,
         },
       },
     });
